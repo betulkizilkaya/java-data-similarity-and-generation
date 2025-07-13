@@ -10,7 +10,7 @@ public class DBWordReader {
         ResultSet rs = stmt.executeQuery("SELECT kelime FROM Tablo2");
 
         while (rs.next()) {
-            list.add(rs.getString("kelime"));
+            list.add(rs.getString("kelime"));//Her satırdan kelime sütunu alınarak list listesine eklenir.
         }
         return list;
     }

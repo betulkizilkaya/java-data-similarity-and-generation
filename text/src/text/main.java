@@ -20,9 +20,9 @@ public class main {
                 String sql = "INSERT INTO Tablo2(kelime) VALUES(?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-                BufferedReader reader = new BufferedReader(new FileReader(word_file));//Dosyayı satır satır okur.
-                String line;
-                int count = 0;
+                BufferedReader reader = new BufferedReader(new FileReader(word_file));//BufferedReader: Dosyayı satır satır okumak için kullanılır.
+                String line;//Her satırı geçici olarak tutar.
+                int count = 0;//sayaç
 
                 while ((line = reader.readLine()) != null) {//Dosya bitene kadar her satır line değişkenine okunuyor.
                     String kelime = line.trim().toLowerCase();

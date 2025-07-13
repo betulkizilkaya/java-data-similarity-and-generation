@@ -9,8 +9,7 @@ import java.util.Map;
 public class Main {
     public static void main(String[] args) {
         String registryPath = "SOFTWARE\\Microsoft\\Windows\\CurrentVersion";//Windows'un çok temel ayarlarının (örneğin varsayılan programlar, kurulum yolu vs.) tutulduğu bir yerdir.
-        String keyDirectory = "HKEY_LOCAL_MACHINE"; // sabit olarak
-
+        String keyDirectory = "HKEY_LOCAL_MACHINE"; //Hangi ana anahtarın kullanılacağı (sabit)
         String Url = "jdbc:sqlite:registry.db";
 
         try (Connection conn = DriverManager.getConnection(Url)) {
@@ -24,7 +23,7 @@ public class Main {
                     "data TEXT)");
         
             //key ve value olduğu için map kullandık.
-            Map<String, Object> values = Advapi32Util.registryGetValues(WinReg.HKEY_LOCAL_MACHINE, registryPath);// Verileri çektik
+            Map<String, Object> values = Advapi32Util.registryGetValues(WinReg.HKEY_LOCAL_MACHINE, registryPath);//registryGetValues: Belirtilen registry yolundaki tüm key-value çiftlerini getirir.
 
             String insertSQL = "INSERT INTO Tablo3 (key_directory, key_name, name, type, data) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement pstmt = conn.prepareStatement(insertSQL);
