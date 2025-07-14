@@ -1,0 +1,9 @@
+digraph "Similarities" {
+"ile" -> "panikle" ["label"="0,71"]
+"ile" -> "tarihle" ["label"="0,71"]
+"ile" -> "gaziler" ["label"="0,71"]
+"ile" -> "müzikle" ["label"="0,71"]
+"ile" -> "mobile" ["label"="0,75"]
+"ile" -> "kabile" ["label"="0,75"]
+"ile" -> "hamile" ["label"="0,75"]
+}
