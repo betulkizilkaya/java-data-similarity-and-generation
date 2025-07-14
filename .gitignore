@@ -24,6 +24,6 @@ hs_err_pid*
 replay_pid*
 
 **/basic_data.db
-registry.db
+**/registry.db
 
 
