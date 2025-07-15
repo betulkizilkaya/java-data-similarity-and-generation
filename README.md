@@ -81,16 +81,41 @@ Aşağıda `BinaryColumnSimilarity` tablosuna ait benzerlik grafiği yer almakta
 | `Pearson.java` | Pearson korelasyon hesaplaması içerir |
 | `data_Graphviz.java` | Binary kolon benzerliklerini DOT/PNG formatında görselleştirir |
 
-### 🔧 Kullanılan Teknolojiler  
-- ☕ Java SE (JDK 17+ veya JDK 21)
-- 🗄️ SQLite JDBC (`org.xerial:sqlite-jdbc`)
-- 📊 Graphviz + `graphviz-java` (`guru.nidi:graphviz-java`)
-- 📚 Gaussian dağılımla veri üretimi
-- 🖥️ Geliştirme Ortamı: IntelliJ IDEA, Eclipse veya benzeri
-- 🔌 Ek Bağımlılıklar:
-  - `slf4j-api`, `slf4j-simple`
-  - `commons-exec`
-  - Sistem genelinde kurulu Graphviz (`dot` komutu)
+## 🔧 Kullanılan Teknolojiler ve Kütüphaneler
+
+Bu proje, Java diliyle geliştirilmiş olup, veritabanı işlemleri, grafik görselleştirme ve yapay veri üretimi gibi görevler için aşağıdaki kütüphane ve araçları kullanır:
+
+### ☕ Java Sürümü
+- Java SE 17 veya Java SE 21 ile uyumludur.
+
+### 🗄️ Veritabanı
+- **SQLite JDBC Driver**  
+  `org.xerial:sqlite-jdbc:3.36.0.3`  
+  Java üzerinden `.db` dosyası ile çalışmak için kullanılır.
+
+### 📊 Grafik Görselleştirme
+- **Graphviz (sistem genelinde kurulu olmalı)**  
+  `dot` komutu ile `.dot` dosyalarından `.png` çıktısı oluşturmak için.
+- **graphviz-java**  
+  `guru.nidi:graphviz-java:0.18.1`  
+  Java üzerinden grafik/dot dosyası üretimi için kullanılır.
+
+### 📦 Ek Bağımlılıklar
+- **Apache Commons Exec**  
+  `commons-exec:1.3`  
+  Dış komutların (örn. `dot`) Java'dan çalıştırılabilmesi için.
+- **SLF4J (Logging)**
+  - `slf4j-api:1.7.36`
+  - `slf4j-simple:1.7.36`  
+  Loglama altyapısı için kullanılır.
+
+### 📚 Yapay Veri Üretimi
+- Gaussian (normal dağılım) kullanılarak sayısal veri üretimi yapılır.
+- Bu sayede, istatistiksel olarak anlamlı ve kontrollü test verileri oluşturulur.
+
+### 🖥️ Geliştirme Ortamı
+- IntelliJ IDEA, Eclipse veya başka bir Java destekli IDE ile uyumludur.
+
 
 
 
@@ -107,13 +132,31 @@ Windows kayıt defteri üzerinden sistem bilgilerini okur ve bu verileri SQLite 
 - ⌨️ Konsol tabanlı çalışma (GUI içermez)  
 - 🔁 Veri güncelleme, silme ve ekleme (CRUD)
 
-### 🔧 Kullanılan Teknolojiler  
-- ☕ Java SE  
-- 🗄️ SQLite JDBC  
-- 🔐 Windows JNA (registry erişimi için)  
-- 🛠️ JDK 17+  
-- 🖥️ IDE: IntelliJ IDEA, Eclipse veya NetBeans  
-- 🔒 `.gitignore` ile `registry.db` gizlenmiştir (güvenlik için)
+## 🔧 Kullanılan Teknolojiler ve Kütüphaneler
+
+Bu modül, Windows işletim sisteminde kayıt defteri (registry) erişimi sağlar ve kayıt verilerini SQLite veritabanına kaydeder. Aşağıdaki teknolojiler ve kütüphaneler kullanılmıştır:
+
+### ☕ Java Sürümü
+- Java SE 17 veya üzeri (JDK 17+)
+
+### 🗄️ Veritabanı
+- **SQLite JDBC Driver**  
+  `org.xerial:sqlite-jdbc:3.36.0.3`  
+  - SQLite veritabanı ile doğrudan bağlantı kurarak verilerin saklanmasını sağlar (`registry.db`).
+
+### 🔐 Kayıt Defteri Erişimi (Windows)
+- **Java Native Access (JNA)**  
+  - `jna:5.13.0`  
+  - `jna-platform:5.13.0`  
+  - Windows işletim sisteminin registry (kayıt defteri) yapılarına erişmek için kullanılır.
+
+### 🖥️ Geliştirme Ortamı
+- IntelliJ IDEA, Eclipse veya NetBeans gibi Java IDE’leri ile uyumlu çalışır.
+
+### 🔒 Güvenlik ve Gizlilik
+- `.gitignore` dosyası ile `registry.db` veritabanı repoya dahil edilmemektedir.
+  - Bu sayede kullanıcıya ait hassas bilgiler gizli tutulur.
+
 
 ⚠️ **Not:** Kayıt defteri sistem bilgilerini içerdiğinden dolayı, kişisel veri barındırmaz ancak içerikler dikkatle kullanılmalıdır.
 
@@ -138,13 +181,51 @@ SQLite veritabanında bulunan Türkçe kelimeler üzerinde metinsel benzerlik al
 
 > “ile” kelimesine benzer diğer kelimeler ve aralarındaki benzerlik oranları bir grafik ile gösterilmiştir.  
 
-### 🔧 Kullanılan Teknolojiler  
-- ☕ Java SE  
-- 🗄️ SQLite JDBC  
-- 🧮 Benzerlik Algoritmaları: Levenshtein, Jaro-Winkler, vs.  
-- 📊 Graphviz (görselleştirme aracı)  
-- 🛠️ JDK 17+  
-- 🖥️ IDE: IntelliJ IDEA veya Eclipse
+## 🔧 Kullanılan Teknolojiler ve Kütüphaneler
+
+Bu modül, metin verileri üzerinden kolonlar arası benzerlik analizleri yapar ve sonuçları görselleştirir. Aşağıdaki teknolojiler ve bağımlılıklar kullanılmıştır:
+
+### ☕ Java Sürümü
+- Java SE 17 veya üzeri (JDK 17+)
+
+### 🗄️ Veritabanı
+- **SQLite JDBC Driver**  
+  `org.xerial:sqlite-jdbc:3.36.0.3`  
+  - `.db` uzantılı SQLite dosyalarıyla etkileşim sağlar (örneğin `dictionary.db`).
+
+### 🧮 Benzerlik Algoritmaları
+- Levenshtein Distance  
+- Jaro-Winkler Similarity  
+- (Projeye göre genişletilebilir: Cosine Similarity, Jaccard, vb.)
+
+### 📊 Grafik Görselleştirme
+- **Graphviz (sistem kurulu olmalı)**  
+  - `.dot` dosyaları (`similarities.dot`) üzerinden görselleştirme yapar.
+- **graphviz-java**  
+  `guru.nidi:graphviz-java:0.18.1`  
+  - Java kodu ile grafik çıktıları (`Similarities-graph.png`) üretir.
+
+### 📚 Metin İşleme Kütüphaneleri
+- `commons-lang3:3.12.0`  
+  - Metin karşılaştırmaları ve string işlemleri için yardımcı fonksiyonlar.
+- `commons-text:1.10.0`  
+  - Benzerlik hesaplamaları gibi gelişmiş metin işleme fonksiyonları için.
+
+### 📦 Ek Bağımlılıklar
+- `commons-exec:1.3`  
+  - Harici `dot` komutunun çalıştırılmasını sağlar.
+- `slf4j-api:1.7.36` ve `slf4j-simple:1.7.36`  
+  - Loglama altyapısı sağlar.
+
+### 📂 Veri Dosyaları
+- `dictionary.db`: SQLite veritabanı, metin girdilerini içerir.
+- `zemberek-ambigious-words.txt`: Türkçe doğal dil işleme için belirsiz (ambiguous) kelimelerin listesidir.
+- `similarities.dot`: Metin kolonları arasındaki benzerlikleri tanımlayan Graphviz DOT dosyası.
+- `Similarities-graph.png`: Yukarıdaki .dot dosyasından üretilmiş görsel benzerlik grafiği.
+
+### 🖥️ Geliştirme Ortamı
+- IntelliJ IDEA veya Eclipse ile çalışılabilir.
+
 
 ---
 ## 🧠 Kullanılan Algoritmalar
