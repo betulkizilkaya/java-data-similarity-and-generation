@@ -7,5 +7,9 @@
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="C:/Program Files/Java/sqlite.jar/sqlite-jdbc-3.36.0.3.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/graphviz/commons-exec-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/graphviz/graphviz-java-0.18.1.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/graphviz/slf4j-api-1.7.36.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/Java/graphviz/slf4j-simple-1.7.36.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
