@@ -12,10 +12,13 @@ Bu depo, veritabanı işlemleri ve metin benzerliği analizine yönelik **üç b
 java-data-similarity-and-generation/
 ├── DB_datageneration/
 │   ├── basic_data.db                  # Üretilen veritabanı
+│   ├── BinaryColumnSimilarity.dot     # Graphviz DOT çıktısı
+│   ├── BinaryColumnSimilarity.png     # Sütun benzerliği grafiği (PNG)
 │   └── src/
 │       └── (default package)/
 │           ├── AllColumns.java
 │           ├── ColumnSimilarity.java
+│           ├── data_Graphviz.java     # BinaryColumnSimilarity tablosunu görselleştirir
 │           ├── InsertMillionRows.java
 │           ├── Main.java
 │           └── Pearson.java
@@ -49,24 +52,47 @@ java-data-similarity-and-generation/
 ## 🌱 1️⃣ DB_datageneration Projesi
 
 ### 🎯 Amacı  
-Gerçek veri kullanılamadığı durumlarda (gizlilik, test, analiz), yapay veri üretimi sağlar ve bu veriler üzerinden kolonlar arası benzerlik analizleri yapılmasına olanak tanır.
+Gerçek verinin kullanılamadığı durumlarda (gizlilik, test, analiz vb.) yapay veri üretimi sağlar. Bu veriler üzerinden kolonlar arası benzerlik analizleri yapılabilir. Ayrıca benzerlik sonuçları görsel olarak Graphviz ile temsil edilebilir.
 
 ### ✨ Özellikler  
 - 🔢 Rastgele sayısal ve metinsel veri üretimi  
 - 🗃️ Üretilen verilerin `basic_data.db` adlı SQLite veritabanına kaydedilmesi  
-- ⚙️ Satır ve kolon sayılarının dinamik olarak yapılandırılabilmesi  
-- 📈 Pearson korelasyonu ile ikili kolonlar arasında benzerlik analizi yapılması  
-- 🧮 Hesaplanan tüm benzerlik oranlarının aşağıdaki tablolara kaydedilmesi:
-  - `ColumnSimilarity`: Her bir kolonun kendi geçmiş değerleriyle olan benzerliği  
-  - `BinaryColumnSimilarity`: İki farklı kolon arasındaki benzerlik oranları  
-  - `AverageOfAll`: Her kolonun tüm kolonlarla olan ortalama benzerlik skoru  
+- ⚙️ Satır ve kolon sayılarının dinamik olarak belirlenebilmesi  
+- 📈 Pearson korelasyonu ile:
+  - Tek kolonun geçmiş (lag-1) değerleriyle olan benzerliği (`ColumnSimilarity`)
+  - İki farklı kolon arasındaki benzerlik oranları (`BinaryColumnSimilarity`)
+  - Her kolonun tüm diğer kolonlarla ortalama benzerlik skoru (`AverageOfAll`)
+- 🖼️ `BinaryColumnSimilarity` tablosundaki sonuçlar görselleştirilir:
+  - DOT formatında grafik dosyası oluşturulur (`BinaryColumnSimilarity.dot`)
+  - Graphviz `dot` komutu kullanılarak PNG çıktısı alınır (`BinaryColumnSimilarity.png`)
+  - Bu işlem `data_Graphviz.java` sınıfı tarafından gerçekleştirilir
+
+### 📌 Örnek Görselleştirme  
+Aşağıda `BinaryColumnSimilarity` tablosuna ait benzerlik grafiği yer almaktadır:
+
+![Binary Column Similarity Graph](./DB_datageneration/BinaryColumnSimilarity.png)
+
+### 🧩 Önemli Java Sınıfları  
+| Sınıf | Açıklama |
+|-------|----------|
+| `InsertMillionRows.java` | Gaussian dağılım ile rastgele veri üretir |
+| `ColumnSimilarity.java` | Kolonların kendi geçmiş değerleriyle olan korelasyonunu hesaplar |
+| `AllColumns.java` | Bütün kolonlar arasında ortalama benzerliği hesaplar |
+| `Pearson.java` | Pearson korelasyon hesaplaması içerir |
+| `data_Graphviz.java` | Binary kolon benzerliklerini DOT/PNG formatında görselleştirir |
 
 ### 🔧 Kullanılan Teknolojiler  
-- ☕ Java SE  
-- 🗄️ SQLite JDBC (`org.xerial:sqlite-jdbc`)  
-- 🛠️ JDK 17+  
-- 🖥️ Geliştirme Ortamı: IntelliJ IDEA veya Eclipse  
-- 📚 UUID ve Gaussian dağılım ile veri üretimi  
+- ☕ Java SE (JDK 17+ veya JDK 21)
+- 🗄️ SQLite JDBC (`org.xerial:sqlite-jdbc`)
+- 📊 Graphviz + `graphviz-java` (`guru.nidi:graphviz-java`)
+- 📚 Gaussian dağılımla veri üretimi
+- 🖥️ Geliştirme Ortamı: IntelliJ IDEA, Eclipse veya benzeri
+- 🔌 Ek Bağımlılıklar:
+  - `slf4j-api`, `slf4j-simple`
+  - `commons-exec`
+  - Sistem genelinde kurulu Graphviz (`dot` komutu)
+
+
 
 
 ---
